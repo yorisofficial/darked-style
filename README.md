@@ -5,6 +5,7 @@
 - Responsive website
 - Responsive navbar
 - Night mode
+- Login page & register page
 - Hero section
 - Gallery (Beta)
 - Swiper (Swiper JS)
