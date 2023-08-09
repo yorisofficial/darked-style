@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="light" x-data="{ darkMode: false }">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Swiper JS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+        <!-- Alpine Js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js"></script>
+        <!-- Tailwind css -->
+        <link rel="stylesheet" href="/dist/output.css">
+        <title>Test Admin</title>
+    </head>
+    <body class="dark:bg-slate-900 dark:text-white">
+        <header class="w-full">
+            <nav x-data="{ isScrolled: false, navbarBee : false }" x-init="window.addEventListener('scroll', () => 
+                { isScrolled = (window.scrollY > 0) })" :class="{ 'fixed drop-shadow-xl dark:drop-shadow-xl': isScrolled, 'sticky': !isScrolled }" class="z-10 w-full bg-white dark:bg-slate-900 dark:backdrop-blur-3xl dark:bg-opacity-30 backdrop-blur-3xl bg-opacity-30 xl:flex justify-between items-center xl:px-20 top-0 py-4">
+                <div class="w-full xl:w-fit flex justify-between px-10">
+                    <a href="/" class=""><img loading="lazy" src="https://placehold.co/500x500" alt="" class="w-[60px] h-[60px] rounded-full"></a>
+                    <div class="flex gap-2 items-center xl:hidden">
+                        <button x-on:click="darkMode = !darkMode" class="btn-dark p-3 rounded-full border-black dark:bg-red-500 dark:hover:bg-red-600">
+                            <svg x-show=" !darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                            </svg>
+                            <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                            </svg>
+                        </button>
+                        <a href="/login.html" class="px-6 py-3 inline-block bg-black rounded-md text-white dark:bg-red-500 dark:hover:bg-red-600">Daftar</a>
+                        <button x-on:click="navbarBee = !navbarBee" class="p-3 flex bg-black text-white rounded-md dark:bg-red-500 dark:hover:bg-red-600">
+                            <svg x-show="!navbarBee" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <svg x-show="navbarBee" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden xl:flex items-center gap-6">
+                    <a href="" class="font-semibold dark:hover:text-red-600">Item 1</a>
+                    <a href="" class="font-semibold dark:hover:text-red-600">Item 2</a>
+                    <a href="" class="font-semibold dark:hover:text-red-600">Item 3</a>
+                    <a href="" class="font-semibold dark:hover:text-red-600">Item 4</a>
+                </div>
+                <div class="hidden xl:flex gap-4">
+                    <button x-on:click="darkMode = !darkMode" class="btn-dark p-3 rounded-full border-black dark:bg-red-500 dark:hover:bg-red-600">
+                        <svg x-show=" !darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                        </svg>
+                        <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                        </svg>
+                    </button>
+                    <a href="/login.html" class="px-6 py-3 border-2 border-black font-semibold rounded-md bg-black text-white dark:border-2 dark:border-red-500 dark:bg-red-500 dark:hover:bg-red-600">Login</a>
+                </div>
+                <!-- Mobile first -->
+                <div x-show="navbarBee" class="flex-col w-full p-4 z-10 bg-transparent dark:bg-slate-900 dark:text-white">
+                    <div class="flex flex-col w-full gap-2 mt-10">
+                        <a x-on:click.outside="navbarBee = false" href="" class="text-black rounded-md hover:bg-black hover:text-white py-4 px-6 dark:hover:bg-red-600 dark:text-white">Item 1</a>
+                        <a x-on:click.outside="navbarBee = false" href="" class="text-black rounded-md hover:bg-black hover:text-white py-4 px-6 dark:hover:bg-red-600 dark:text-white">Item 2</a>
+                        <a x-on:click.outside="navbarBee = false" href="" class="text-black rounded-md hover:bg-black hover:text-white py-4 px-6 dark:hover:bg-red-600 dark:text-white">Item 3</a>
+                        <a x-on:click.outside="navbarBee = false" href="" class="text-black rounded-md hover:bg-black hover:text-white py-4 px-6 dark:hover:bg-red-600 dark:text-white">Item 4</a>
+                    </div>
+                    <div x-on:click="navbarBee = false" class="flex w-full justify-end mt-6">
+                        <button class="px-6 py-3 border-black rounded-md bg-black text-white dark:bg-red-500 dark:hover:bg-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="z-0">
+            <div class="container w-full h-full px-4 xl:px-20">
+                <div class="w-full h-full grid grid-cols-1 xl:grid-cols-2 bg-white dark:bg-slate-900 justify-center items-center xl:my-20 border-2">
+                    <div class="flex items-center justify-center xl:order-2 py-4">
+                        <img loading="lazy" src="https://placehold.co/500x500" alt="hero-image" class="w-[300px] h-[300px] xl:w-[500px] xl:h-[500px]">
+                    </div>
+                    <div class="flex flex-col justify-center items-center xl:justify-start xl:items-start xl:p-4 xl:mt-0 py-10 xl:py-0">
+                        <h3 class="text-base text-center xl:text-start font-semibold uppercase">Lorem ipsum dolor sit amet.</h3>
+                        <h1 class="text-4xl text-center xl:text-start font-semibold px-4 xl:px-0">MEDIATECH ID</h1>
+                        <p class="text-base text-center xl:text-start xl:w-3/4 mt-8 px-4 xl:px-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod odit numquam excepturi, perspiciatis nisi corporis repudiandae illum, reprehenderit blanditiis non voluptatem eius sunt quam maiores eligendi nemo impedit, eaque accusamus voluptate sed!</p>
+                        <div class="my-4 mt-10">
+                            <button class="px-6 py-3 rounded-md bg-black text-white dark:bg-red-500 dark:hover:bg-red-600">Let's talk</button>
+                            <button class="px-6 py-3 rounded-md dark:text-red-500 font-semibold hover:text-red-600">See more project</button>
+                        </div>
+                        <div class="flex flex-col gap-4 mt-10">
+                            <h3 class="uppercase font-semibold text-base text-center xl:text-start">Sponsor team</h3>
+                            <div class="flex gap-4">
+                                <img loading="lazy" src="https://placehold.co/500x500" alt="sponsor-img" class="w-[50px] xl:w-[80px] h-[50px] xl:h-[80px] rounded-full">
+                                <img loading="lazy" src="https://placehold.co/500x500" alt="sponsor-img" class="w-[50px] xl:w-[80px] h-[50px] xl:h-[80px] rounded-full">
+                                <img loading="lazy" src="https://placehold.co/500x500" alt="sponsor-img" class="w-[50px] xl:w-[80px] h-[50px] xl:h-[80px] rounded-full">
+                                <img loading="lazy" src="https://placehold.co/500x500" alt="sponsor-img" class="w-[50px] xl:w-[80px] h-[50px] xl:h-[80px] rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-full flex flex-col items-center justify-center my-10 border-2">
+                    <div class="tittle w-full py-4">
+                        <h1 class="text-xl font-semibold text-center uppercase dark:text-red-500">Galery</h1>
+                        <p class="text-center w-full xl:w-1/2 mx-auto mt-4 px-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum hic sint praesentium autem explicabo, quas neque, rem iusto, recusandae error officia adipisci.</p>
+                    </div>
+                    <div class="grid grid-cols-2 xl:grid-cols-3 p-4 w-full h-full gap-4">
+                        <img loading="lazy" src="https://placehold.co/400x400" alt="galery-img" class="mx-auto w-full">
+                        <img loading="lazy" src="https://placehold.co/400x400" alt="galery-img" class="mx-auto w-full">
+                        <img loading="lazy" src="https://placehold.co/400x400" alt="galery-img" class="mx-auto w-full">
+                        <img loading="lazy" src="https://placehold.co/400x400" alt="galery-img" class="mx-auto w-full">
+                        <img loading="lazy" src="https://placehold.co/400x400" alt="galery-img" class="mx-auto w-full">
+                        <img loading="lazy" src="https://placehold.co/400x400" alt="galery-img" class="mx-auto w-full">
+                    </div>
+                </div>
+                <div class="w-full h-full flex flex-col items-center justify-center border-2">
+                    <div class="py-4 w-full">
+                        <h1 class="text-xl font-semibold text-center uppercase dark:text-red-500">Project preview</h1>
+                        <p class="text-center w-full xl:w-1/2 mx-auto mt-4 px-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum hic sint praesentium autem explicabo, quas neque, rem iusto, recusandae error officia adipisci.</p>
+                    </div>
+                    <div class="w-full h-full flex justify-center items-center py-10">
+                        <div class="swiper w-[400px] h-full">
+                            <div class="swiper-wrapper flex w-full h-fit py-10">
+                                <div class="swiper-slide flex flex-col items-center border-2 rounded-md pb-10">
+                                    <div class="header">
+                                        <img loading="lazy" src="https://via.placeholder.com/400x200" alt="img-preview" class="w-[400px] h-[200px]">
+                                    </div>
+                                    <div class="body py-4 text-center flex flex-col justify-center items-center">
+                                        <h1 class="text-base font-bold">Lorem Tittle</h1>
+                                        <p class="w-3/4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci. Enim, nisi!</p>
+                                        <div class="">
+                                            <h3 class="font-semibold text-base my-4">Tech stack</h3>
+                                            <div class="flex gap-2">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-content mt-4">
+                                        <button class="px-6 py-3 rounded-md border-2 border-black bg-black dark:bg-red-500 font-semibold text-white">Preview</button>
+                                        <a href="/" class="px-6 py-3 rounded-md border-2 border-black font-semibold dark:border-2 dark:border-red-500">See more</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col items-center border-2 rounded-md pb-10">
+                                    <div class="header">
+                                        <img loading="lazy" src="https://via.placeholder.com/400x200" alt="img-preview" class="w-[400px] h-[200px]">
+                                    </div>
+                                    <div class="body py-4 text-center flex flex-col justify-center items-center">
+                                        <h1 class="text-base font-bold">Lorem Tittle</h1>
+                                        <p class="w-3/4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci. Enim, nisi!</p>
+                                        <div class="">
+                                            <h3 class="font-semibold text-base my-4">Tech stack</h3>
+                                            <div class="flex gap-2">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-content mt-4">
+                                        <button class="px-6 py-3 rounded-md border-2 border-black bg-black dark:bg-red-500 font-semibold text-white">Previe </button>
+                                        <a href="/" class="px-6 py-3 rounded-md border-2 border-black font-semibold dark:border-2 dark:border-red-500">See more</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col items-center border-2 rounded-md pb-10">
+                                    <div class="header">
+                                        <img loading="lazy" src="https://via.placeholder.com/400x200" alt="img-preview" class="w-[400px] h-[200px]">
+                                    </div>
+                                    <div class="body py-4 text-center flex flex-col justify-center items-center">
+                                        <h1 class="text-base font-bold">Lorem Tittle</h1>
+                                        <p class="w-3/4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci. Enim, nisi!</p>
+                                        <div class="">
+                                            <h3 class="font-semibold text-base my-4">Tech stack</h3>
+                                            <div class="flex gap-2">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-content mt-4">
+                                        <button class="px-6 py-3 rounded-md border-2 border-black bg-black dark:bg-red-500 font-semibold text-white">Preview</button>
+                                        <a href="/" class="px-6 py-3 rounded-md border-2 border-black font-semibold dark:border-2 dark:border-red-500">See more</a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide flex flex-col items-center border-2 rounded-md pb-10">
+                                    <div class="header">
+                                        <img loading="lazy" src="https://via.placeholder.com/400x200" alt="img-preview" class="w-[400px] h-[200px]">
+                                    </div>
+                                    <div class="body py-4 text-center flex flex-col justify-center items-center">
+                                        <h1 class="text-base font-bold">Lorem Tittle</h1>
+                                        <p class="w-3/4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque, adipisci. Enim, nisi!</p>
+                                        <div class="">
+                                            <h3 class="font-semibold text-base my-4">Tech stack</h3>
+                                            <div class="flex gap-2">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                                <img loading="lazy" src="https://via.placeholder.com/50x50" class="w[50px] h-[50px] rounded-full" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer-content mt-4">
+                                        <button class="px-6 py-3 rounded-md border-2 border-black bg-black dark:bg-red-500 font-semibold text-white">Previe </button>
+                                        <a href="/" class="px-6 py-3 rounded-md border-2 border-black font-semibold dark:border-2 dark:border-red-500">See more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-fit flex flex-col items-center justify-start my-10 border-2">
+                    <div class="py-4 w-full">
+                        <h1 class="text-xl font-semibold text-center uppercase dark:text-red-500">Accordion Menu</h1>
+                        <p class="text-center w-full xl:w-1/2 mx-auto mt-4 px-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum hic sint praesentium autem explicabo, quas neque, rem iusto, recusandae error officia adipisci.</p>
+                    </div>
+                    <div class="grid grid-cols-1 xl:grid-cols-2 w-full p-4 xl:gap-4">
+                        <div class="flex w-full flex-col">
+                            <div x-data="{items1 : true}" x-on:click.outside="items1 = false" class="border-2">
+                                <button x-on:click="items1 = !items1" x-bind:class="items1 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 1 <svg x-show="!items1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items1" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                            <div x-data="{items2 : false}" x-on:click.outside="items2 = false" class="border-2">
+                                <button x-on:click="items2 = !items2" x-bind:class="items2 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 2 <svg x-show="!items2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items2" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                            <div x-data="{items3 : false}" x-on:click.outside="items3 = false" class="border-2">
+                                <button x-on:click="items3 = !items3" x-bind:class="items3 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 3 <svg x-show="!items3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items3" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                            <div x-data="{items4 : false}" x-on:click.outside="items4 = false" class="border-2">
+                                <button x-on:click="items4 = !items4" x-bind:class="items4 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 4 <svg x-show="!items4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items4" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex w-full flex-col">
+                            <div x-data="{items5 : false}" x-on:click.outside="items5 = false" class="border-2">
+                                <button x-on:click="items5 = !items5" x-bind:class="items5 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 5 <svg x-show="!items5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items5" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                            <div x-data="{items6 : false}" x-on:click.outside="items6 = false" class="border-2">
+                                <button x-on:click="items6 = !items6" x-bind:class="items6 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 6 <svg x-show="!items6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items6" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                            <div x-data="{items7 : false}" x-on:click.outside="items7 = false" class="border-2">
+                                <button x-on:click="items7 = !items7" x-bind:class="items7 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 7 <svg x-show="!items7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items7" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                            <div x-data="{items8 : false}" x-on:click.outside="items8 = false" class="border-2">
+                                <button x-on:click="items8 = !items8" x-bind:class="items8 ? 'bg-black dark:bg-red-500 dark:hover:bg-red-600 text-white font-semibold':''" class="flex justify-between items-center w-full px-10 py-4"> Tittle items 8 <svg x-show="!items8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                    <svg x-show="items8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                                <div x-show="items8" class="w-full px-10 py-4 dark:bg-slate-800">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium cupiditate molestiae dolore quae odio ducimus consectetur, voluptates autem? Maiores fugiat quas suscipit veniam ad!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <script src="/main.js"></script>
+    </body>
+</html>
